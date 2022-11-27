@@ -9,59 +9,49 @@ import org.junit.Test;
 import br.edu.infnet.pedido.model.entidade.Cliente;
 
 public class ClienteDAOTest {
+	private ClienteDAO clienteDAO;
 
-	
 	@Before
 	public void inicializar() {
-		ClienteDAO clienteDAO = new ClienteDAO();
-		Cliente cliente = new Cliente("Jose das Couves"); 
+		this.clienteDAO = new ClienteDAO();
+		Cliente cliente = new Cliente("Jose das Couves");
 		clienteDAO.salvar(cliente);
 	}
-	
-	
+
 	@Test
 	public void test() {
-		ClienteDAO clienteDAO = new ClienteDAO();
-		Cliente cliente = new Cliente("Jose das Couves"); 
+		Cliente cliente = new Cliente("Jose das Couves");
 		boolean validacao = clienteDAO.salvar(cliente);
 		Assert.assertTrue(validacao);
 	}
-	
-	
+
 	@Test
 	public void testUpdate() {
-		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
-		Cliente cliente = new Cliente("Maria das Couves", lista.get(0).getCodigo()); 
+		Cliente cliente = new Cliente("Maria das Couves", lista.get(0).getCodigo());
 		boolean validacao = clienteDAO.atualizar(cliente);
 		Assert.assertTrue(validacao);
 	}
-	
+
 	@Test
 	public void testDelete() {
-		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
-		Cliente cliente = new Cliente("Maria das Couves", lista.get(lista.size()-1).getCodigo()); 
+		Cliente cliente = new Cliente("Maria das Couves", lista.get(lista.size() - 1).getCodigo());
 		boolean validacao = clienteDAO.deletar(cliente);
 		Assert.assertTrue(validacao);
 	}
-	
-	
+
 	@Test
 	public void testListaClientes() {
-		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
 		Assert.assertTrue(lista.size() > 0);
 	}
-	
 
 	@Test
 	public void testObterCliente() {
-		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
 		Cliente cliente = (Cliente) clienteDAO.obter(lista.get(0).getCodigo());
 		Assert.assertNotNull(cliente);
 	}
-	
 
 }

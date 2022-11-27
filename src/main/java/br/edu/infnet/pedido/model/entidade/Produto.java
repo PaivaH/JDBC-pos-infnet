@@ -7,7 +7,6 @@ public class Produto {
 	private Double preco;
 
 	public Produto() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Produto(String descricao, Double preco) {

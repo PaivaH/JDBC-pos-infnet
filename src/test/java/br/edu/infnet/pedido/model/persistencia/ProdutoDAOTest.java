@@ -13,40 +13,49 @@ public class ProdutoDAOTest {
 
 	@Before
 	public void inicializar(){
-		produto = new Produto(1l,"Produto de teste", 66.6D);
+		produto = new Produto("Produto de teste", 66.6D);
 	}
 
 	@Test
-	public void testInsertProduto() {
+	public void testSalvar() {
 		ProdutoDAO produtIdao = new ProdutoDAO();
 		boolean insert = produtIdao.salvar(produto);
 		Assert.assertTrue(insert);
 	}
 	
 	@Test
-	public void testUpdateProduto() {
+	public void testAtualizar() {
 		ProdutoDAO produtIdao = new ProdutoDAO();
-		boolean query = produtIdao.atualizar(produto);
-		Assert.assertTrue(query);
-	}
-
-	public void testDeletar() {
-		ProdutoDAO produtIdao = new ProdutoDAO();
-		boolean query = produtIdao.deletar(produto);
-		Assert.assertTrue(query);
+		List<Produto> produtos = produtIdao.listarTodos();
+		Produto produtoUpdate = produtos.get(produtos.size() -1);
+		produtoUpdate.setDescricao("Produto update");
+		produtoUpdate.setPreco(55D);
+		boolean update = produtIdao.atualizar(produtoUpdate);
+		Assert.assertTrue(update);
 	}
 
 	@Test
-	public void testObterProduto() {
+	public void testObter() {
 		ProdutoDAO produtIdao = new ProdutoDAO();
-		Produto prod = produtIdao.obter(produto.getCodigo());
+		List<Produto> produtos = produtIdao.listarTodos();
+		Produto produtoGet = produtos.get(produtos.size() -1);
+		Produto prod = produtIdao.obter(produtoGet.getCodigo());
 		Assert.assertNotNull(prod);
 	}
 	
 	@Test
-	public void testObterListaProdutos() {
+	public void testListarTodos() {
 		ProdutoDAO produtIdao = new ProdutoDAO();
 		List<Produto> produtos = produtIdao.listarTodos();
 		Assert.assertTrue(produtos.size() > 0);
+	}
+
+	@Test
+	public void testDeletar() {
+		ProdutoDAO produtIdao = new ProdutoDAO();
+		List<Produto> produtos = produtIdao.listarTodos();
+		Produto produtoDelete = produtos.get(produtos.size() -1);
+		boolean query = produtIdao.deletar(produtoDelete);
+		Assert.assertTrue(query);
 	}
 }

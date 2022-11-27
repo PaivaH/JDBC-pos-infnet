@@ -57,7 +57,6 @@ public class ClienteDAO extends JdbcDAO<Cliente>  {
 	@Override
 	public Cliente obter(Long codigo){
 		String sql = "select * from cliente where codigo = ?";
-		Cliente cliente = new Cliente();
 		try {
 			pstm = con.prepareStatement(sql); 
 			pstm.setLong(1, codigo); 
@@ -65,9 +64,8 @@ public class ClienteDAO extends JdbcDAO<Cliente>  {
 			if(rs.next()) {
 				String nome = rs.getString("nome");
 				Long codigoDB = rs.getLong("codigo");
-				cliente = new Cliente(nome, codigoDB);
+				return new Cliente(nome, codigoDB);
 			}
-			return cliente;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

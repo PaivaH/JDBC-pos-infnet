@@ -12,37 +12,54 @@ import br.edu.infnet.pedido.model.entidade.Pedido;
 
 public class PedidoDAOTest {
 	private static Pedido pedido;
+	private PedidoDAO pedidoDAO;
 
 	@Before
 	public void inicializar(){
-		Cliente cliente = new Cliente();
-		cliente = new ClienteDAO().obter(1L);
+		this.pedidoDAO = new PedidoDAO();
+		Cliente cliente = new ClienteDAO().obter(1L);
 		LocalDate date = LocalDate.of(2022, 12, 11);
 		pedido = new Pedido(date, cliente);
 	}
 
 	@Test
 	public void testInsertpedido() {
-		PedidoDAO pedidoDAO = new PedidoDAO();
 		boolean insert = pedidoDAO.salvar(pedido);
 		Assert.assertTrue(insert);
 	}
 
 	@Test
+	public void testAtualizar() {
+		List<Pedido> lista = pedidoDAO.listarTodos();
+		Pedido pedidoUpdate = lista.get(lista.size() -1);
+		pedidoUpdate.setData(LocalDate.of(2022, 10, 05));
+		Boolean update = pedidoDAO.atualizar(pedidoUpdate);
+		Assert.assertTrue(update);
+	}
+
+	@Test
 	public void testObterpedido() {
-		PedidoDAO pedidoDAO = new PedidoDAO();
-		Pedido pedido = pedidoDAO.obter(1L);
-		System.out.println(pedido);
-		Assert.assertNotNull(pedido);
+		List<Pedido> lista = pedidoDAO.listarTodos();
+		Pedido pedidoUpdate = lista.get(lista.size() -1);
+		Pedido query = pedidoDAO.obter(pedidoUpdate.getCodigo());
+		query.setProdutos(new PedidoItemDAO().listarTodos(1L));
+		System.out.println(query);
+		Assert.assertNotNull(query);
 	}
 	
 	@Test
 	public void testListaPedidos() {
-		PedidoDAO pediIdao = new PedidoDAO();
-		List<Pedido> lista = pediIdao.listarTodos();
+		List<Pedido> lista = pedidoDAO.listarTodos();
 		System.out.println(lista); 
 		Assert.assertTrue(lista.size() > 0);
 	}
-	
+
+	@Test
+	public void testDeletar() {
+		List<Pedido> lista = pedidoDAO.listarTodos();
+		Pedido pedidoDeletar = lista.get(lista.size() -1);
+		Boolean update = pedidoDAO.deletar(pedidoDeletar);
+		Assert.assertTrue(update);
+	}
 
 }

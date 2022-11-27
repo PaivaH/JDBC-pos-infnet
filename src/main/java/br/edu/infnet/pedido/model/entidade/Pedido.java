@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Pedido {
 
-	private Long numero;
+	private Long codigo;
 	
 	private LocalDate data;
 	
@@ -16,9 +16,9 @@ public class Pedido {
 	public Pedido() {
 	}
 	
-	public Pedido(Long numero, LocalDate data, Cliente cliente) {
+	public Pedido(Long codigo, LocalDate data, Cliente cliente) {
 		super();
-		this.numero = numero;
+		this.codigo = codigo;
 		this.data = data;
 		this.cliente = cliente;
 	}
@@ -30,13 +30,12 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-
-	public Long getNumero() {
-		return numero;
+	public Long getCodigo() {
+		return codigo;
 	}
 
-	public void setNumero(Long numero) {
-		this.numero = numero;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public LocalDate getData() {
@@ -65,7 +64,7 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [numero=" + numero + ", data=" + data + ", cliente=" + cliente + ", produtos=" + produtos + "]";
+		return "Pedido [codigo=" + codigo + ", data=" + data + ", cliente=" + cliente + ", produtos=" + produtos + "]";
 	}
 	
 	

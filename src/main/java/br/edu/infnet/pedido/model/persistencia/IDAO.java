@@ -2,8 +2,6 @@ package br.edu.infnet.pedido.model.persistencia;
 
 import java.util.List;
 
-import br.edu.infnet.pedido.model.entidade.Cliente;
-
 public interface IDAO<T> {
 
 	Boolean salvar(T obj);

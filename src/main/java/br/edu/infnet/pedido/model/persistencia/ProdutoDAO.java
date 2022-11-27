@@ -10,7 +10,7 @@ public class ProdutoDAO extends JdbcDAO<Produto> {
 
 	@Override
 	public Boolean salvar(Produto obj) {
-		String sql = "insert into produto(descricao, preco) values (?,?)";
+		String sql = "insert into produto(descricao, preco) values (?, ?)";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, obj.getDescricao());

@@ -12,7 +12,7 @@ public interface IDAO<T> {
 
 	Boolean deletar(T obj);
 
-	Cliente obter(Long codigo);
+	T obter(Long codigo);
 
 	List<T> listarTodos();
 

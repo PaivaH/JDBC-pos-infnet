@@ -13,7 +13,7 @@ public class ClienteDAOTest {
 	
 	@Before
 	public void inicializar() {
-		IDAO clienteDAO = new ClienteDAO();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		Cliente cliente = new Cliente("Jose das Couves"); 
 		clienteDAO.salvar(cliente);
 	}
@@ -21,7 +21,7 @@ public class ClienteDAOTest {
 	
 	@Test
 	public void test() {
-		IDAO clienteDAO = new ClienteDAO();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		Cliente cliente = new Cliente("Jose das Couves"); 
 		boolean validacao = clienteDAO.salvar(cliente);
 		Assert.assertTrue(validacao);
@@ -30,7 +30,7 @@ public class ClienteDAOTest {
 	
 	@Test
 	public void testUpdate() {
-		IDAO clienteDAO = new ClienteDAO();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
 		Cliente cliente = new Cliente("Maria das Couves", lista.get(0).getCodigo()); 
 		boolean validacao = clienteDAO.atualizar(cliente);
@@ -39,7 +39,7 @@ public class ClienteDAOTest {
 	
 	@Test
 	public void testDelete() {
-		IDAO clienteDAO = new ClienteDAO();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
 		Cliente cliente = new Cliente("Maria das Couves", lista.get(lista.size()-1).getCodigo()); 
 		boolean validacao = clienteDAO.deletar(cliente);
@@ -49,7 +49,7 @@ public class ClienteDAOTest {
 	
 	@Test
 	public void testListaClientes() {
-		IDAO clienteDAO = new ClienteDAO();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
 		Assert.assertTrue(lista.size() > 0);
 	}
@@ -57,10 +57,10 @@ public class ClienteDAOTest {
 
 	@Test
 	public void testObterCliente() {
-		IDAO clienteDAO = new ClienteDAO();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		List<Cliente> lista = clienteDAO.listarTodos();
-		Cliente cliente = clienteDAO.obter(lista.get(0).getCodigo());
-		Assert.assertNotNull(cliente);;
+		Cliente cliente = (Cliente) clienteDAO.obter(lista.get(0).getCodigo());
+		Assert.assertNotNull(cliente);
 	}
 	
 

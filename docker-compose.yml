@@ -1,0 +1,23 @@
+version: "3.4"
+services:
+  mariadb:
+    image: mariadb:10
+
+    container_name: jdbc-mariadb
+    
+    ports:
+      - 3306:3306
+
+    restart: on-failure
+
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: pedido
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123
+
+    volumes:
+      - jdbc:/var/lib/mysql
+
+volumes:
+  jdbc:

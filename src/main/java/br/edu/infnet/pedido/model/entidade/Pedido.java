@@ -24,6 +24,13 @@ public class Pedido {
 	}
 
 
+	public Pedido(LocalDate data, Cliente cliente) {
+		super();
+		this.data = data;
+		this.cliente = cliente;
+	}
+
+
 	public Long getNumero() {
 		return numero;
 	}

@@ -15,23 +15,23 @@ public class PedidoItemDAOTest {
     private PedidoItemDAO pedidoItemDAO;
 
 	@Before
+    @Test
 	public void inicializar(){
         pedidoItem = new PedidoItem();
         this.pedidoItemDAO = new PedidoItemDAO();
 
-        Pedido pedido = new PedidoDAO().obter(1L);
+        List<Pedido> pedidos = new PedidoDAO().listarTodos();
+        Pedido pedido = pedidos.get(pedidos.size() -1);
         pedidoItem.setPedido(pedido);
 
-        Produto produto = new ProdutoDAO().obter(1L);
+        List<Produto> produtos = new ProdutoDAO().listarTodos();
+        Produto produto = produtos.get(produtos.size() -1);
         pedidoItem.setProduto(produto);
         System.out.println(pedidoItem);
-	}
 
-    @Test
-    public void testSalvar() {
         Boolean insert = pedidoItemDAO.salvar(pedidoItem);
         Assert.assertTrue(insert);
-    }
+	}
 
     /*/
     @Test

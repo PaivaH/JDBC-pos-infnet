@@ -120,7 +120,7 @@ public class PedidoDAO extends JdbcDAO<Pedido> {
 			while(rs.next()) {
 				Long codigo = rs.getLong("codigo");
 				LocalDate data = rs.getDate("data").toLocalDate();
-				Cliente cliente = new ClienteDAO().obter(rs.getLong("codigo"));
+				Cliente cliente = new ClienteDAO().obter(rs.getLong("cliente_cod"));
 				pedidos.add(new Pedido(codigo, data, cliente));
 			}
 			return pedidos;

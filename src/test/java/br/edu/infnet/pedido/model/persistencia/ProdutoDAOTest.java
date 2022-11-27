@@ -12,12 +12,9 @@ public class ProdutoDAOTest {
 	private Produto produto;
 
 	@Before
-	public void inicializar(){
-		produto = new Produto("Produto de teste", 66.6D);
-	}
-
 	@Test
-	public void testSalvar() {
+	public void testSalvar(){
+		produto = new Produto("Produto de teste", 66.6D);
 		ProdutoDAO produtIdao = new ProdutoDAO();
 		boolean insert = produtIdao.salvar(produto);
 		Assert.assertTrue(insert);

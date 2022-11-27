@@ -15,15 +15,13 @@ public class PedidoDAOTest {
 	private PedidoDAO pedidoDAO;
 
 	@Before
+	@Test
 	public void inicializar(){
 		this.pedidoDAO = new PedidoDAO();
 		Cliente cliente = new ClienteDAO().obter(1L);
 		LocalDate date = LocalDate.of(2022, 12, 11);
 		pedido = new Pedido(date, cliente);
-	}
 
-	@Test
-	public void testInsertpedido() {
 		boolean insert = pedidoDAO.salvar(pedido);
 		Assert.assertTrue(insert);
 	}
